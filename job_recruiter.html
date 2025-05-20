@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job Recruiter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            background-color: #f4f4f4;
+        }
+
+        .main-container {
+            display: flex;
+            width: 100%;
+        }
+
+        .recruiter-form {
+            width: 60%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+
+        .recruiter-form h1 {
+            color: #2e6da4;
+            margin-bottom: 20px;
+        }
+
+        .recruiter-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .recruiter-form input,
+        .recruiter-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .recruiter-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            padding: 12px;
+        }
+
+        .recruiter-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .matches-container {
+            width: 30%;
+            margin: 20px;
+        }
+
+        .match-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-header {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .match-details {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .candidate-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .candidate-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .candidate-list a {
+            text-decoration: none;
+            color: #2e6da4;
+        }
+
+        .candidate-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Job Recruiter Form -->
+        <div class="recruiter-form">
+            <h1>Job Recruiter - Fill Your Preferences</h1>
+            <form method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="company_name">Company Name:</label>
+                <input type="text" id="company_name" name="company_name" required>
+
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" required>
+
+                <label for="required_position">Required Position:</label>
+                <input type="text" id="required_position" name="required_position" required>
+
+                <label for="min_salary">Minimum Salary:</label>
+                <input type="number" id="min_salary" name="min_salary" required>
+
+                <label for="experience_expected">Experience Expected:</label>
+                <input type="number" id="experience_expected" name="experience_expected" required>
+
+                <label for="qualifications">Qualifications:</label>
+                <textarea id="qualifications" name="qualifications" required></textarea>
+
+                <label for="extra_qualifications">Extra Qualifications:</label>
+                <textarea id="extra_qualifications" name="extra_qualifications"></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!-- Matches Section -->
+        <div class="matches-container">
+            {% if matches %}
+                <h2>Job Matches</h2>
+                <div id="job-matches">
+                    {% for match in matches %}
+                        <div class="match-box">
+                            <div class="match-header">Job Seeker Match:</div>
+                            <div class="match-details">{{ match.seeker_message }}</div>
+                            <div class="match-header">Job Recruiter Match:</div>
+                            <div class="match-details">{{ match.recruiter_message }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h2>No Matches Yet</h2>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

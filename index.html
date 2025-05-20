@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Connect</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Listen for job seeker match notifications
+        socket.on('job_seeker_match', function(data) {
+            alert(data);  // Show message for the job seeker
+            // Optionally, you can append this to a specific div or element in your HTML to display it
+        });
+
+        // Listen for job recruiter match notifications
+        socket.on('job_recruiter_match', function(data) {
+            alert(data);  // Show message for the job recruiter
+            // Optionally, you can append this to a specific div or element in your HTML to display it
+        });
+    </script>
+</head>
+<body>
+    <h1>Job Connect</h1>
+    <p>Welcome to the Job Connect platform. You will be notified here when a match occurs!</p>
+
+    <!-- Optionally, you can have a div here to show messages -->
+    <div id="job-matches"></div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #5a5a8e;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .profile-image {
+            display: block;
+            margin: 0 auto 20px;
+            width: 150px; /* Adjust size as needed */
+            height: 150px; /* Adjust size as needed */
+            border-radius: 50%; /* Makes the image circular */
+            border: 2px solid #5a5a8e; /* Optional: border around the image */
+        }
+        .btn-download {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #5a5a8e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn-download:hover {
+            background-color: #47476c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Generated Resume</h1>
+        
+        <!-- Profile Image Section -->
+        <div class="section">
+            <h3>Profile Image</h3>
+            <img src="{{ resume.profile_image }}" alt="Profile Image" class="profile-image">
+        </div>
+
+        <!-- Personal Details Section -->
+        <div class="section">
+            <h3>Personal Details</h3>
+            <p><strong>Name:</strong> {{ resume.name }}</p>
+            <p><strong>Email:</strong> {{ resume.email }}</p>
+            <p><strong>Phone:</strong> {{ resume.phone }}</p>
+            <p><strong>LinkedIn:</strong> <a href="{{ resume.linkedin }}" target="_blank">{{ resume.linkedin }}</a></p>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="section">
+            <h3>Professional Summary</h3>
+            <p>{{ resume.summary }}</p>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section">
+            <h3>Skills</h3>
+            <ul>
+                {% for skill in resume.skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Work Experience Section -->
+        <div class="section">
+            <h3>Work Experience</h3>
+            {% for job in resume.experience %}
+            <div>
+                <p><strong>Position:</strong> {{ job.position }}</p>
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Duration:</strong> {{ job.duration }}</p>
+                <p><strong>Details:</strong> {{ job.details }}</p>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+            <h3>Education</h3>
+            {% for edu in resume.education %}
+            <div>
+                <p><strong>Institution:</strong> {{ edu.institution }}</p>
+                <p><strong>Degree:</strong> {{ edu.degree }}</p>
+                <p><strong>Years Attended:</strong> {{ edu.years }}</p>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="section">
+            <h3>Certifications</h3>
+            <ul>
+                {% for cert in resume.certifications %}
+                <li>{{ cert }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section">
+            <h3>Projects</h3>
+            {% for project in resume.projects %}
+            <div>
+                <p><strong>Title:</strong> {{ project.title }}</p>
+                <p><strong>Description:</strong> {{ project.description }}</p>
+                <p><strong>Technologies:</strong> {{ project.technologies }}</p>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+
+        <!-- Download Button -->
+        <a href="/download_resume" class="btn-download">Download Resume</a>
+    </div>
+</body>
+</html>

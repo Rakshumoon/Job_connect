@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume and Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .recommendation {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Resume</h1>
+    <div class="section">
+        <strong>Name:</strong> {{ details.name }}<br>
+        <strong>Email:</strong> {{ details.email }}<br>
+        <strong>College:</strong> {{ details.college }}<br>
+        <strong>CGPA:</strong> {{ details.cgpa }}<br>
+        <strong>School:</strong> {{ details.school }}<br>
+        <strong>Percentage:</strong> {{ details.percentage }}<br>
+        <strong>Skills:</strong> {{ details.skills }}<br>
+        <strong>Experience:</strong> {{ details.experience }}<br>
+        <strong>Education:</strong> {{ details.education }}<br>
+        <strong>Desired Companies:</strong> {{ details.desired_companies }}<br>
+        <strong>Projects:</strong> {{ details.projects }}<br>
+        <strong>Certifications:</strong> {{ details.certifications }}<br>
+        <strong>Languages:</strong> {{ details.languages }}<br>
+        <strong>Awards:</strong> {{ details.awards }}<br>
+        <strong>Volunteer Experience:</strong> {{ details.volunteer_experience }}<br>
+        <strong>Interests:</strong> {{ details.interests }}
+    </div>
+
+    <h2>Job Recommendations</h2>
+    {% for title, description, similarity in recommendations %}
+        <div class="recommendation">
+            <strong>Job Title:</strong> {{ title }}<br>
+            <strong>Description:</strong> {{ description }}<br>
+            <strong>Match Score:</strong> {{ similarity | round(2) }}
+        </div>
+    {% endfor %}
+</body>
+</html>

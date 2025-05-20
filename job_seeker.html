@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job Seeker</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            margin: 20px auto;
+        }
+
+        .preferences-form, .content, #job-matches {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .preferences-form h1, .content h2 {
+            color: #2e6da4;
+        }
+
+        .preferences-form form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .preferences-form form input, 
+        .preferences-form form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .preferences-form form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .preferences-form form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .job-list, .content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-list li a, .content ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .job-list li a:hover, .content ul li a:hover {
+            text-decoration: underline;
+        }
+
+        #job-matches .match-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+
+        #job-matches .match-header {
+            font-weight: bold;
+            color: #2e6da4;
+        }
+
+        #job-matches .match-details {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Job Seeker Dashboard</h1>
+    </header>
+
+    <div class="main-container">
+        <!-- Preferences Form -->
+        <div class="preferences-form">
+            <h1>Fill Your Preferences</h1>
+            <form method="POST">
+                <label>Name:</label>
+                <input type="text" name="name" required>
+                <label>Expected Salary:</label>
+                <input type="number" name="expected_salary" required>
+                <label>Qualifications:</label>
+                <textarea name="qualifications" required></textarea>
+                <label>Experience:</label>
+                <input type="number" name="experience" required>
+                <label>Job Position:</label>
+                <input type="text" name="job_position" required>
+                <label>Extra Qualifications:</label>
+                <textarea name="extra_qualifications"></textarea>
+                <label>Interested Companies:</label>
+                <textarea name="interested_companies"></textarea>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <!-- Job Matches -->
+        {% if matches %}
+        <div id="job-matches">
+            {% for match in matches %}
+            <div class="match-box">
+                <div class="match-header">Job Seeker Match:</div>
+                <div class="match-details">{{ match.seeker_message }}</div>
+                <div class="match-header">Job Recruiter Match:</div>
+                <div class="match-details">{{ match.recruiter_message }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div id="job-matches">
+            <p>No matches yet.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Matches</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/matches.css') }}">
+</head>
+<body>
+    <h1>Job Matches</h1>
+    
+    {% if matches %}
+        <div class="matches-list">
+            {% for match in matches %}
+                <div class="match-item">
+                    <h3>Job Seeker: {{ match.seeker[0] }} ({{ match.seeker[4] }} Position)</h3>
+                    <p>Experience: {{ match.seeker[5] }} years, Expected Salary: {{ match.seeker[1] }}</p>
+                    <h3>Job Recruiter: {{ match.recruiter[0] }} ({{ match.recruiter[3] }} Position)</h3>
+                    <p>Experience Expected: {{ match.recruiter[6] }} years, Min Salary: {{ match.recruiter[5] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No matches found.</p>
+    {% endif %}
+</body>
+</html>

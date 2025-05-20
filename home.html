@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #0c0c0c, #f0f8ff);
+            color: #333;
+            
+        }
+        .background {
+            background: url("{{ url_for('static', filename='images/background_image.jpg') }}") no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            background: url("{{ url_for('static', filename='images/background_image.jpg') }}") no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .marquee {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 10px;
+            font-size: 1.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0); }
+            100% { transform: translate(-100%); }
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar a {
+            color: rgb(10, 10, 10);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(6, 6, 6, 0.2);
+            transform: scale(1.1);
+        }
+
+        .main-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 25%;
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .sidebar h3 {
+            color: #2575fc;
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            display: block;
+            font-size: 1.1rem;
+            color: #0c0c0c;
+            text-decoration: none;
+            padding: 12px 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #6a11cb;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .content {
+            width: 75%;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 1s ease-out;
+        }
+
+        .content h2 {
+            color: #2575fc;
+            border-bottom: 2px solid #6a11cb;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .companies p {
+            font-size: 1.2rem;
+            margin: 12px 0 }
+        
+        .companies a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .companies a:hover {
+            color: #6a11cb;
+            text-shadow: 0 0 5px #6a11cb;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .match-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(to right, #f9f9f9, #ffffff);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-container h3 {
+            color: #2575fc;
+        }
+
+        .match-container p {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            font-size: 1rem;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome To Job Connect</h1>
+    </header>
+    <div class="marquee">
+        <span>Exciting job opportunities await you! Check them out now!</span>
+    </div>
+    <div class="navbar">
+        <a href="/about_us">About Us</a>
+        <a href="/contact_us">Contact Us</a>
+        <a href="{{ url_for('update_profile') }}">Update Profile</a>
+
+        <a href="/logout">Logout</a>
+        
+    </div>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <h3>Navigation</h3>
+            <a href="{{ url_for('job_seeker') }}">Job Seeker</a>
+            <a href="{{ url_for('job_recruiter') }}">Job Recruiter</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Featured Companies</h2>
+            <div class="companies">
+                <p><a href="/company/google">1. Google</a></p>
+                <p><a href="/company/microsoft">2. Microsoft</a></p>
+                <p><a href="/company/infosys">3. Infosys</a></p>
+                <p><a href="/company/amazon">4. Amazon</a></p>
+                <p><a href="/company/tcs">5. Tata Consultancy Services</a></p>
+            </div>
+            <h2>Build Your Customized Resume</h2>
+            <!-- Add this in your home.html or wherever appropriate -->
+<a href="{{ url_for('resume_builder') }}" class="btn btn-primary">Build Your Resume</a>
+
+        </div>
+        <h1>Job Matches</h1>
+    {% if matches %}
+        <h2>Matched Job Seekers and Job Recruiters</h2>
+        {% for match in matches %}
+            <div>
+                <h3>Job Seeker: {{ match.seeker.name }}</h3>
+                <p>Job Position: {{ match.seeker.job_position }}</p>
+                <p>Expected Salary: {{ match.seeker.expected_salary }}</p>
+                <hr>
+                <h3>Recruiter: {{ match.recruiter.name }}</h3>
+                <p>Company: {{ match.recruiter.company_name }}</p>
+                <p>Required Position: {{ match.recruiter.required_position }}</p>
+                <p>Salary Offered: {{ match.recruiter.min_salary }}</p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No matches found.</p>
+    {% endif %}
+    </div>
+</body>
+</html>
